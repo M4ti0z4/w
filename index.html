@@ -136,10 +136,8 @@
             50% { transform: translateY(-5px); }
         }
 
-        /* --- WERSJA NA TELEFON (POPRAWIONA) --- */
         @media (max-width: 600px) {
             .scene { 
-                /* Szerokość jednej strony na telefonie */
                 width: 170px; 
                 height: 260px; 
             }
@@ -148,9 +146,6 @@
             .heart-icon { font-size: 3rem; }
             .card-base p { font-size: 0.8rem; }
 
-            /* TUTAJ JEST ZMIANA: */
-            /* Przesuwamy o 85px w prawo (połowa z 170px) */
-            /* Dzięki temu środek książki (zgięcie) ląduje na środku ekranu */
             .card.open { 
                 transform: translateX(85px); 
             }
@@ -194,4 +189,5 @@
     </script>
 
 </body>
+
 </html>
