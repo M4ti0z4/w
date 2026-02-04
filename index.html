@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Walentynka</title>
+    <title>Żeby było miło</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💜</text></svg>">
     <style>
-        /* RESET I TŁO STRONY */
         body {
             margin: 0;
             padding: 0;
@@ -13,19 +13,17 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #2c2c2c; /* Ciemne tło, żeby kartka się wyróżniała */
-            font-family: 'Georgia', serif; /* Elegancka czcionka */
+            background-color: #2c2c2c;
+            font-family: 'Georgia', serif;
             overflow: hidden;
         }
 
-        /* SCENA 3D */
         .scene {
             width: 300px;
             height: 420px;
-            perspective: 1500px; /* To daje głębię 3D */
+            perspective: 1500px;
         }
 
-        /* CAŁA KARTKA (KONTENER) */
         .card {
             width: 100%;
             height: 100%;
@@ -35,19 +33,17 @@
             transition: transform 1s ease-in-out;
         }
 
-        /* WSPÓLNE CECHY STRON (PAPIERU) */
         .card-page {
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
-            background-color: #fdfbf7; /* Kolor papieru jak na zdjęciu */
-            border-radius: 5px; /* Lekkie zaokrąglenie rogów */
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.05); /* Wewnętrzny cień papieru */
+            background-color: #fdfbf7;
+            border-radius: 5px;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
         }
 
-        /* --- PRAWA STRONA (Ta, która leży nieruchomo ze zdjęciem) --- */
         .card-base {
             z-index: 1;
             display: flex;
@@ -56,11 +52,11 @@
             justify-content: center;
             padding: 20px;
             box-sizing: border-box;
-            box-shadow: 10px 10px 30px rgba(0,0,0,0.3); /* Cień rzucany na stół */
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.3);
             text-align: center;
+            background-color: #fffbf0;
         }
 
-        /* ZDJĘCIE W ŚRODKU */
         .card-base img {
             width: 85%;
             height: auto;
@@ -68,11 +64,10 @@
             object-fit: cover;
             border: 4px solid white;
             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-            transform: rotate(-2deg); /* Lekkie przekrzywienie zdjęcia dla luzu */
+            transform: rotate(-2deg);
             margin-bottom: 20px;
         }
 
-        /* TEKST ŻYCZEŃ */
         .card-base p {
             color: #4a4a4a;
             font-size: 1.1rem;
@@ -80,94 +75,84 @@
             margin: 0;
         }
 
-        /* --- OKŁADKA (Ta, która się rusza) --- */
         .card-cover {
             z-index: 2;
-            transform-origin: left; /* Zawias z lewej strony */
-            transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1); /* Bardzo płynny ruch */
+            transform-origin: left;
+            transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
             transform-style: preserve-3d;
-            
-            /* STAN POCZĄTKOWY: Lekko uchylona */
-            transform: rotateY(-35deg);
-            
+            transform: rotateY(-35deg); /* Lekkie uchylenie na start */
             box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
         }
 
-        /* PRZÓD OKŁADKI (Widoczny na początku) */
         .cover-front {
             position: absolute;
             width: 100%;
             height: 100%;
-            backface-visibility: hidden; /* Ukrywa tył */
-            background-color: #fdfbf7;
+            backface-visibility: hidden;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            border-right: 1px solid #e0e0e0; /* Krawędź zgięcia */
+            border-right: 1px solid #e0e0e0;
         }
 
-        /* TYŁ OKŁADKI (Widoczny po otwarciu - lewa strona wewnątrz) */
         .cover-back {
             position: absolute;
             width: 100%;
             height: 100%;
             backface-visibility: hidden;
-            transform: rotateY(180deg); /* Odwrócony, bo to tył */
-            background-color: #fdfbf7;
-            box-shadow: inset -10px 0 20px rgba(0,0,0,0.05); /* Cień przy zgięciu */
+            transform: rotateY(180deg);
+            background-color: #fffbf0;
+            box-shadow: inset -10px 0 20px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden;
         }
 
-        /* DEKORACJE NA OKŁADCE */
-        .heart-icon {
-            font-size: 4rem;
-            color: #d32f2f;
-            margin-bottom: 10px;
-        }
-        .title {
-            font-size: 2rem;
-            color: #333;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        .hint {
-            position: absolute;
-            bottom: 20px;
-            font-size: 0.8rem;
-            color: #999;
-            animation: bounce 2s infinite;
+        .cover-back img {
+            width: 90%;
+            height: auto;
+            max-height: 250px;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            transform: rotate(3deg);
         }
 
-        /* --- STANY AKTYWNE (PO KLIKNIĘCIU) --- */
-        
-        /* Otwieranie okładki */
-        .card.open .card-cover {
-            transform: rotateY(-180deg); /* Otwórz całkowicie na płasko */
-        }
+        .heart-icon { font-size: 4rem; color: #d32f2f; margin-bottom: 10px; }
+        .title { font-size: 2rem; color: #333; letter-spacing: 2px; text-transform: uppercase; }
+        .hint { position: absolute; bottom: 20px; font-size: 0.8rem; color: #999; animation: bounce 2s infinite; }
 
-        /* Przesunięcie całej kartki w prawo, żeby była na środku ekranu po otwarciu */
-        .card.open {
-            transform: translateX(150px); /* Połowa szerokości karty */
-        }
+        /* Ustawienia dla komputera - przesunięcie w prawo */
+        .card.open .card-cover { transform: rotateY(-180deg); }
+        .card.open { transform: translateX(150px); }
 
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-5px); }
         }
 
-        /* RWD - Żeby mieściło się na telefonie */
+        /* --- WERSJA NA TELEFON (POPRAWIONA) --- */
         @media (max-width: 600px) {
-            .scene {
-                width: 260px;
-                height: 380px;
+            .scene { 
+                /* Szerokość jednej strony na telefonie */
+                width: 170px; 
+                height: 260px; 
             }
-            .card.open {
-                transform: translateX(0); /* Na telefonie nie przesuwamy, bo się nie zmieści */
-            }
-            /* Na telefonie po otwarciu trzeba trochę oddalić widok */
-            .card.open .card-cover {
-                transform: rotateY(-180deg);
-                z-index: 0;
+            
+            .title { font-size: 1.4rem; }
+            .heart-icon { font-size: 3rem; }
+            .card-base p { font-size: 0.8rem; }
+
+            /* TUTAJ JEST ZMIANA: */
+            /* Przesuwamy o 85px w prawo (połowa z 170px) */
+            /* Dzięki temu środek książki (zgięcie) ląduje na środku ekranu */
+            .card.open { 
+                transform: translateX(85px); 
             }
         }
     </style>
@@ -178,25 +163,23 @@
         <div class="card" onclick="toggleCard()">
             
             <div class="card-page card-cover">
-                
                 <div class="cover-front">
-                    <div class="heart-icon">❤️</div>
-                    <div class="title">Dla Ciebie</div>
+                    <div class="heart-icon">💜</div>
+                    <div class="title">Dla Ciebie<br>ode mnie</div>
                     <div class="hint">(kliknij)</div>
                 </div>
 
                 <div class="cover-back">
-                    </div>
+                    <img src="z2.jpg" alt="Zdjęcie lewe">
+                </div>
             </div>
 
             <div class="card-page card-base">
-                <img src="https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Nasze zdjęcie">
-                
+                <img src="z1.png" alt="Zdjęcie prawe">
                 <p>
-                    Kochanie,<br>
-                    każdy dzień z Tobą to<br>
-                    najpiękniejszy prezent.<br>
-                    Kocham Cię!
+                    Super walentynka<br>
+                    dla<br>
+                    Super osoby
                 </p>
             </div>
 
