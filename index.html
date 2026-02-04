@@ -80,7 +80,7 @@
             transform-origin: left;
             transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
             transform-style: preserve-3d;
-            transform: rotateY(-35deg); /* Lekkie uchylenie na start */
+            transform: rotateY(-35deg);
             box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
         }
 
@@ -125,9 +125,8 @@
 
         .heart-icon { font-size: 4rem; color: #d32f2f; margin-bottom: 10px; }
         .title { font-size: 2rem; color: #333; letter-spacing: 2px; text-transform: uppercase; }
-        .hint { position: absolute; bottom: 20px; font-size: 0.8rem; color: #999; animation: bounce 2s infinite; }
+        .hint { position: absolute; bottom: 35px; font-size: 0.9rem; color: #444; animation: bounce 2s infinite; }
 
-        /* Ustawienia dla komputera - przesunięcie w prawo */
         .card.open .card-cover { transform: rotateY(-180deg); }
         .card.open { transform: translateX(150px); }
 
@@ -191,3 +190,4 @@
 </body>
 
 </html>
+
